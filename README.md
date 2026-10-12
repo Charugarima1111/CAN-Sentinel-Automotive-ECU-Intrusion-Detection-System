@@ -46,4 +46,4 @@ Modern vehicles use CAN bus protocol which has no authentication and encryption.
 ### 8. How to Run
 ```bash
 pip install python-can scikit-learn flask
-python simulator.py
+python can_simulator.py

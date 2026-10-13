@@ -38,10 +38,9 @@ Modern vehicles use CAN bus protocol which has no authentication and encryption.
 
 ### 7. Day-wise Progress
 - **Day 1:** Repository Created & Linked to Infotact Portal
-- **Day 2:** Created initial index.html dashboard
-- **Day 3:** Added detailed project documentation (README)
-- **Day 4:** Created CAN Traffic Simulator - Simulated 20 CAN frames with Normal and Anomaly detection - Tested in VS Code Terminal on 12 Oct 2026
-- **Day 5 Onwards:** Attack modules development (DoS, Spoofing)
+- **Day 2:** Created initial index.html dashboard and added detailed project documentation (README)
+- **Day 3:** Created CAN Traffic Simulator - Simulated 20 CAN frames with Normal and Anomaly detection - Tested in VS Code Terminal on 12 Oct 2026
+- **Day 4:** Implemented DoS Flood and Brake Spoofing Attack module - Tested 30 malicious frames injection - 13 Oct 2026
 
 ### 8. How to Run
 ```bash

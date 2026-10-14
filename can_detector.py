@@ -1,21 +1,27 @@
+from datetime import datetime
 
-def detect_intrusion(can_id):
-    suspicious_ids = ["0x666", "0x777"]
+# Example rules for simulated CAN traffic
+KNOWN_ECU_IDS = {0x100, 0x200, 0x300, 0x400}
+SUSPICIOUS_IDS = {0x000, 0x7FF}
 
-    if can_id in suspicious_ids:
-        return "ALERT: Suspicious CAN message detected!"
+def detect_intrusion(can_id, dlc):
+    timestamp = datetime.now().strftime("%H:%M:%S")
 
-    return "Normal CAN message"
+    if can_id in SUSPICIOUS_IDS:
+        return f"[{timestamp}] ALERT: Suspicious CAN ID 0x{can_id:X}"
 
+    if can_id not in KNOWN_ECU_IDS:
+        return f"[{timestamp}] WARNING: Unknown CAN ID 0x{can_id:X}"
 
-def main():
-    print("CAN-Sentinel: Automotive ECU Intrusion Detection System")
+    if not 0 <= dlc <= 8:
+        return f"[{timestamp}] ALERT: Invalid CAN data length"
 
-    can_id = input("Enter CAN ID (example: 0x123): ")
-    result = detect_intrusion(can_id)
-
-    print(result)
+    return f"[{timestamp}] NORMAL: Recognized ECU message"
 
 
 if __name__ == "__main__":
-    main()
+    print("CAN-Sentinel Intrusion Detector")
+    can_id = int(input("Enter CAN ID (example: 0x100): "), 16)
+    dlc = int(input("Enter data length (0-8): "))
+
+    print(detect_intrusion(can_id, dlc))

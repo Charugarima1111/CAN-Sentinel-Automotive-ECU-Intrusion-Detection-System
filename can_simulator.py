@@ -8,6 +8,7 @@ Domain: Cyber Security
 import random
 import time
 from datetime import datetime
+from can_detector import detect_intrusion
 
 # Standard ECU IDs for simulation
 ECU_IDS = {
@@ -40,11 +41,18 @@ def run_simulator(num_frames=20):
     for i in range(num_frames):
         # 80% normal, 20% anomaly to test IDS
         if random.random() < 0.8:
-            frame = generate_normal_frame()
-        else:
-            frame = generate_anomaly_frame()
+    can_id = random.choice(list(ECU_IDS.keys()))
+    dlc = 8
+    frame = generate_normal_frame()
+else:
+    can_id = random.choice([0x000, 0x7FF, 0x123])
+    dlc = random.randint(0, 8)
+    frame = generate_anomaly_frame()
+
+alert = detect_intrusion(can_id, dlc)
         
         print(f"{i+1}. {frame}")
+print(f"    IDS Result: {alert}")
         time.sleep(0.5)
     
     print("\n=== Simulation Complete - Log saved for IDS Analysis ===")

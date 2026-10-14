@@ -8,6 +8,7 @@ Domain: Cyber Security
 import random
 import time
 from datetime import datetime
+from can_detector import detect_intrusion
 
 # Standard ECU IDs for simulation
 ECU_IDS = {

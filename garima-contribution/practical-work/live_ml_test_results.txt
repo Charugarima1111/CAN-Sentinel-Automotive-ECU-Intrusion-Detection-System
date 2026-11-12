@@ -1,0 +1,29 @@
+CAN-SENTINEL LIVE ML DETECTOR TEST RESULTS
+
+Environment: Kali Linux / WSL
+CAN Interface: vcan0
+ML Algorithm: Isolation Forest
+Features: Message Frequency and Payload Entropy
+
+TEST 1: NORMAL CAN TRAFFIC
+Messages: 10
+Frequency: 8.85 messages/second
+Average Entropy: 3.000
+Anomaly Score: 0.0569
+Result: NORMAL
+
+TEST 2: HIGH-FREQUENCY CAN TRAFFIC
+Messages: 100
+Frequency: 6074.23 messages/second
+Average Entropy: 0.000
+Anomaly Score: -0.1472
+Result: ANOMALY DETECTED
+
+CONCLUSION:
+The live ML prototype successfully classified the
+normal test batch and detected the high-frequency
+virtual CAN test burst as an anomaly.
+
+NOTE:
+Training data is synthetic. Further testing with
+representative automotive CAN datasets is required.

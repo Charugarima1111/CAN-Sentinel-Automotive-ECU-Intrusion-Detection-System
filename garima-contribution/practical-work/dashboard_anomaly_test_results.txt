@@ -1,0 +1,42 @@
+CAN-SENTINEL DASHBOARD ANOMALY DETECTION TEST
+
+Environment: Kali Linux / WSL
+CAN Interface: vcan0
+C Component: can_sniffer_socket.c
+Python Component: can_socket_receiver.py
+Dashboard: can_sentinel_dashboard.py
+ML Algorithm: Isolation Forest
+
+TEST: HIGH-FREQUENCY REPEATED CAN TRAFFIC
+
+Test CAN ID: 0x100
+Payload: FFFFFFFFFFFFFFFF
+Traffic Type: Repeated high-frequency CAN frames
+
+Analysis Batch 1:
+Messages: 88
+Frequency: 31.83 messages/second
+Average Entropy: 0.000
+Anomaly Score: -0.1521
+ML Result: ANOMALY DETECTED
+
+Analysis Batch 2:
+Messages: 12
+Frequency: 12000.00 messages/second
+Average Entropy: 0.000
+Anomaly Score: -0.1521
+ML Result: ANOMALY DETECTED
+
+RESULT:
+The CAN-Sentinel dashboard successfully displayed the
+incoming CAN traffic and the Python ML receiver classified
+the repeated high-frequency traffic as anomalous.
+
+The C sniffer captured frames from the virtual CAN interface
+and forwarded them to the Python receiver.
+
+LIMITATIONS:
+Testing was performed using a virtual CAN interface (vcan0).
+The ML model uses synthetic normal training data.
+Further testing with representative automotive CAN datasets
+and real vehicle hardware is required.

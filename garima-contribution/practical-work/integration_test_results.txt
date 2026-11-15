@@ -1,0 +1,45 @@
+CAN-SENTINEL C-TO-PYTHON INTEGRATION TEST RESULTS
+
+Environment: Kali Linux / WSL
+CAN Interface: vcan0
+Communication: Unix Domain Socket
+C Component: can_sniffer_socket.c
+Python Component: can_socket_receiver.py
+ML Algorithm: Isolation Forest
+Training Data: Synthetic normal CAN traffic
+
+TEST 1: NORMAL CAN TRAFFIC
+CAN ID: 0x100
+Messages Analysed: 6
+Frequency: 9.70 messages/second
+Average Payload Entropy: 3.000
+Anomaly Score: 0.1281
+ML Result: NORMAL
+
+TEST 2: HIGH-FREQUENCY CAN TRAFFIC
+CAN ID: 0x100
+Messages Analysed: 100
+Frequency: 2746.88 messages/second
+Average Payload Entropy: 0.000
+Anomaly Score: -0.0937
+ML Result: ANOMALY DETECTED
+
+INTEGRATION RESULT:
+The C sniffer successfully captured CAN frames from
+the virtual CAN interface and forwarded them to the
+Python ML receiver using a Unix Domain Socket.
+
+The Python receiver successfully extracted CAN
+payload data, calculated traffic features and used
+the Isolation Forest model to classify test traffic.
+
+CONCLUSION:
+Normal test traffic was classified as NORMAL.
+A high-frequency test burst was classified as
+ANOMALY DETECTED.
+
+LIMITATIONS:
+Testing was performed on a virtual CAN interface.
+The ML model uses synthetic training data.
+Further validation with representative automotive
+CAN datasets and real vehicle hardware is required.
